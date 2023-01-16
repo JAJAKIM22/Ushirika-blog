@@ -1,0 +1,36 @@
+.text-li {
+    color: black;
+    list-style: none;
+  }
+  
+  
+  .text-li li {
+    margin-bottom: 0.5vh;
+    font-size: small;
+  }
+  
+  
+  .avatar-card {
+    display: flex;
+    position: absolute;
+    right: 1.5vw;
+    margin-top: 2vh;
+  }
+  
+  
+  .avatar-card img {
+    height: 15vh;
+    width: 15vh;
+  }
+  
+  
+  .text-li button {
+    border: 1px solid rgb(155, 149, 149);
+    border-radius: 5px;
+    margin-top: 0.5vh;
+    /* width: 5vw; */
+    font-size: small;
+  }
+  
+  
+  
