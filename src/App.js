@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignupForm from './components/Signup';
 import LoginForm from './components/Login';
 import Post from './components/Post';
-import BlogList from './components/BlogPage';
 import UserAvatar from './components/UserAvatar';
+import Blog from './components/BlogPage';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
                 <Route path="/login" element={ <LoginForm/> } />
                 <Route path="/signup" element={ <SignupForm/> } />
                 <Route path="/post" element={ <Post/> } /> 
-                <Route path="/blog" element={ <BlogList/> } />
+                <Route path="/blog" element={ <Blog/> } />
                 <Route path="/user" element={ <UserAvatar/> } />
             </Routes>
         </div>
