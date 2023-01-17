@@ -4,6 +4,7 @@ import LoginForm from './components/Login';
 import Post from './components/Post';
 import UserAvatar from './components/UserAvatar';
 import Blog from './components/BlogPage';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/post" element={ <Post/> } /> 
                 <Route path="/blog" element={ <Blog/> } />
                 <Route path="/user" element={ <UserAvatar/> } />
+                <Route path='/forgotpassword' element={ <ForgotPassword/> } />
             </Routes>
         </div>
     </Router>

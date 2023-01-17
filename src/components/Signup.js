@@ -234,6 +234,23 @@ export default function SignupForm () {
 
   const sendVerificationEmail = (email) => {
     // code to send verification email
+    fetch('/send-verification-email', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to send verification email');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Verification email sent successfully');
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   return (
@@ -353,14 +370,9 @@ export default function SignupForm () {
                 Sign Up
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link href="/login" variant="body2">
-                    {"Don't have an account? login "}
+                    {"Have an account? login "}
                   </Link>
                 </Grid>
               </Grid>
