@@ -67,7 +67,7 @@ function UserAvatar() {
   const handleLogout = () => {
     // Logout logic here
     localStorage.removeItem('jwt')
-    localStorage.removeItem('oauth2')
+    // localStorage.removeItem('oauth2')
     window.location.reload() 
   };
 

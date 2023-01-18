@@ -138,15 +138,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // send the POST request to the server
-    fetch('/api/login', {
+    fetch('http://192.168.0.50:8000/dj-rest-auth/login/', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
     })
     .then(response => {
@@ -202,12 +202,12 @@ export default function LoginForm() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
                 autoFocus
               />
               <TextField

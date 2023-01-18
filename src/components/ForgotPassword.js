@@ -74,7 +74,7 @@ const ForgotPassword = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        fetch('/api/forgot-password', {
+        fetch('http://192.168.0.50:8000/dj-rest-auth/password/reset/', {
             method: 'POST',
             body: JSON.stringify({ email }),
             headers: { 'Content-Type': 'application/json' }
