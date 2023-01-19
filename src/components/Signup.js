@@ -165,238 +165,271 @@
 
 // export default SignupForm;
 
-import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Ushirika
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+// import React, { useState } from 'react';
+// import Avatar from '@mui/material/Avatar';
+// import Button from '@mui/material/Button';
+// import CssBaseline from '@mui/material/CssBaseline';
+// import TextField from '@mui/material/TextField';
+// import Link from '@mui/material/Link';
+// import Paper from '@mui/material/Paper';
+// import Box from '@mui/material/Box';
+// import Grid from '@mui/material/Grid';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import Typography from '@mui/material/Typography';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-export default function SignupForm () {
-  const [username, setName] = useState('');
-  const [email, setEmail] = useState('');
-  // const [phone, setPhone] = useState('');
-  // const [churchName, setChurchName] = useState('');
-  const [password1, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Ushirika
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
-  const handleSubmit = (e) => {
-    const formData = {
-      // name: name,
-      username: username,
-      email: email,
-      // location: location,
-      password1: password1,
-      password2: password2
-    };
-    e.preventDefault();
+// const theme = createTheme();
 
-    if (password1 !== password2) {
-      alert('Passwords do not match. Please try again.');
-      return;
-    }
 
-    // send the POST request to the server
-    fetch('http://192.168.0.50:8000/dj-rest-auth/registration/', {
-      method: 'POST',
-      credentials: 'omit'
-,      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' ,
-      "Accept": "application/json",
-      "origin":"*"}
-    })
-    .then(response => {
-      if (response.ok) {
-        // send verification email
-        sendVerificationEmail(email);
-        // handle successful signup
-      } else {
-        console.error(response.statusText);
-        alert('An error occurred. Please try again.');
-      }
-    })
-    .catch(error => {
-        console.error(error);
-        alert('An error occurred. Please try again.');
-    });
-  };
+// export default function SignupForm () {
+//   const [username, setName] = useState('');
+//   const [email, setEmail] = useState('');
+//   // const [phone, setPhone] = useState('');
+//   // const [churchName, setChurchName] = useState('');
+//   const [password, setPassword] = useState('');
+//   // const [password2, setPassword2] = useState('');
+//   // const [confirmPassword, setConfirmPassword] = useState('');
+//   const [error, setError] = useState('');
 
-  const sendVerificationEmail = (email) => {
-    // code to send verification email
-    fetch('/send-verification-email', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to send verification email');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Verification email sent successfully');
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
+//   let getUsernameError = ()=>{
+//     if (error.username){
+//       return error.username[0]
+//     }else{
+//       return null
+//     }
+//   }
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1606443410339-4046fad7a16a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJheWVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'primary' }}>
-              <LockOutlinedIcon color='primary' />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign Up
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                autoComplete="name"
-                value={username}
-                onChange={e => setName(e.target.value)}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                autoFocus
-              />
+
+//   const handleSubmit = (e) => {
+
+//     const formData = {
+//       // name: name,
+//       username: username,
+//       email: email,
+//       // location: location,
+//       password: password,
+//       // password2: password2
+//     };
+//     if(password.length < 8){
+//       alert("password should be atleast 8 characters long")
+//     }
+//     else if(!password.match(/[A-Z]/)){
+//       alert("password should have atleast one capital letter")
+//     }
+//     else if(!password.match(/[!@#%&]/)){
+//       alert("password should have atleast one special character")
+//     }
+//     e.preventDefault();
+
+//     // if (password !== password2) {
+//     //   alert('Passwords do not match. Please try again.');
+//     //   return;
+//     // }
+
+//     // send the POST request to the server
+//     fetch('http://192.168.0.50:8000/api/signup/', {
+//       method: 'POST',
+//       credentials: 'omit'
+// ,      body: JSON.stringify(formData),
+//       headers: { 'Content-Type': 'application/json' ,
+//       "Accept": "application/json",
+//       "origin":"*"}
+//     })
+//     .then(response => {
+//       if (response.ok) {
+//         // send verification email
+//         // sendVerificationEmail(email);
+//         // handle successful signup
+//       } else {
+//         // console.error(response.error);
+//         // alert('An error occurred. Please try again.');
+//         response.json().then(data => {
+//           setError(data.errors)
+//           console.log(getUsernameError())
+//       })
+//       // alert(response.errors);
+//       }
+//     })
+//     .catch(error => {
+//         console.error(error);
+//         alert('An error occurred. Please try again.');
+//     });
+//   };
+
+  // const sendVerificationEmail = (email) => {
+  //   // code to send verification email
+  //   fetch('/send-verification-email', {
+  //     method: 'POST',
+  //     body: JSON.stringify({ email }),
+  //     headers: { 'Content-Type': 'application/json' },
+  //   })
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Failed to send verification email');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log('Verification email sent successfully');
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
+
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <Grid container component="main" sx={{ height: '100vh' }}>
+//         <CssBaseline />
+//         <Grid
+//           item
+//           xs={false}
+//           sm={4}
+//           md={7}
+//           sx={{
+//             backgroundImage: 'url(https://images.unsplash.com/photo-1606443410339-4046fad7a16a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJheWVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60)',
+//             backgroundRepeat: 'no-repeat',
+//             backgroundColor: (t) =>
+//               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+//             backgroundSize: 'cover',
+//             backgroundPosition: 'center',
+//           }}
+//         />
+//         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+//           <Box
+//             sx={{
+//               my: 8,
+//               mx: 4,
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//             }}
+//           >
+//             <Avatar sx={{ m: 1, bgcolor: 'primary' }}>
+//               <LockOutlinedIcon color='primary' />
+//             </Avatar>
+//             <Typography component="h1" variant="h5">
+//               Sign Up
+//             </Typography>
+//             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              
+            // <TextField
+            //     margin="normal"
+            //     required
+            //     fullWidth
+            //     id="name"
+            //     label="Name"
+            //     name="name"
+            //     autoComplete="name"
+            //     value={username}
+            //     onChange={e => setName(e.target.value)}
+            //     autoFocus
+            //     error = {error.username}
+            //     helperText = {()=>{getUsernameError()}}
+            //   />
+              // <TextField
+              //   margin="normal"
+              //   required
+              //   fullWidth
+              //   id="email"
+              //   label="Email Address"
+              //   name="email"
+              //   autoComplete="email"
+              //   value={email}
+              //   onChange={e => setEmail(e.target.value)}
+              //   autoFocus
+              //   error = {error.email}
+              //   helperText = {()=>{console.log('====================================');
+              //   console.log(error);
+              //   console.log('====================================');}}
+              // />
                
-               {/* <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="phone"
-                label="Phone Number"
-                name="phone"
-                autoComplete="phone"
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                autoFocus
-              />
-               <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="churchname"
-                label="Church Name"
-                name="church name"
-                autoComplete="church name"
-                value={churchName}
-                onChange={e => setChurchName(e.target.value)}
-                autoFocus
-              /> */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={password1}
-                onChange={e => setPassword(e.target.value)}  
-              />
-               <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="password"
-                label="Confirm Password"
-                name="confirm password"
-                type="password"
-                autoComplete="current-password"
-                value={password2}
-                onChange={e => setPassword2(e.target.value)}
-                autoFocus
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href="/login" variant="body2">
-                    {"Have an account? login "}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
-  );
-}
+//                {/* <TextField
+//                 margin="normal"
+//                 required
+//                 fullWidth
+//                 id="phone"
+//                 label="Phone Number"
+//                 name="phone"
+//                 autoComplete="phone"
+//                 value={phone}
+//                 onChange={e => setPhone(e.target.value)}
+//                 autoFocus
+//               />
+//                <TextField
+//                 margin="normal"
+//                 required
+//                 fullWidth
+//                 id="churchname"
+//                 label="Church Name"
+//                 name="church name"
+//                 autoComplete="church name"
+//                 value={churchName}
+//                 onChange={e => setChurchName(e.target.value)}
+//                 autoFocus
+//               /> */}
+//               <TextField
+//                 margin="normal"
+//                 required
+//                 fullWidth
+//                 name="password"
+//                 label="Password"
+//                 type="password"
+//                 id="password"
+//                 autoComplete="current-password"
+//                 value={password}
+//                 onChange={e => setPassword(e.target.value)}  
+//               />
+//                {/* <TextField
+//                 margin="normal"
+//                 required
+//                 fullWidth
+//                 id="password"
+//                 label="Confirm Password"
+//                 name="confirm password"
+//                 type="password"
+//                 autoComplete="current-password"
+//                 value={password2}
+//                 onChange={e => setPassword2(e.target.value)}
+//                 autoFocus
+//               /> */}
+//               <Button
+//                 type="submit"
+//                 fullWidth
+//                 variant="contained"
+//                 sx={{ mt: 3, mb: 2 }}
+//               >
+//                 Sign Up
+//               </Button>
+//               <Grid container>
+//                 <Grid item>
+//                   <Link href="/login" variant="body2">
+//                     {"Have an account? login "}
+//                   </Link>
+//                 </Grid>
+//               </Grid>
+//               <Copyright sx={{ mt: 5 }} />
+//             </Box>
+//           </Box>
+//         </Grid>
+//       </Grid>
+//     </ThemeProvider>
+//   );
+// }
 
 // import React, {useState} from "react";
 // import {TextField, Checkbox, Link, Grid, Box, Typography, Container, Button, FormControlLabel} from '@mui/material/';
@@ -638,6 +671,219 @@ export default function SignupForm () {
 //     </div>
 //   );
 // }
+import React, { useState } from "react";
+import {Button, Typography, Container, CssBaseline, TextField,  Link, Grid, Box} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "../style/signup.css";
+
+
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      
+      {"Copyright © "}
+      <Link color="inherit" href="#" style={{textDecoration: "none"}}>
+        USHIRIKA
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const theme = createTheme();
+
+export default function LoginForm() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  // const [phone, setPhone] = useState('');
+  // const [churchName, setChurchName] = useState('');
+  const [password, setPassword] = useState('');
+  // const [password2, setPassword2] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+
+  let getUsernameError = ()=>{
+    if (error.username){
+      return error.username[0]
+    }else{
+      return null
+    }
+  }
+
+
+  const handleSubmit = (e) => {
+
+    const formData = {
+      // name: name,
+      username: username,
+      email: email,
+      // location: location,
+      password: password,
+      // password2: password2
+    };
+    if(password.length < 8){
+      alert("password should be atleast 8 characters long")
+    }
+    else if(!password.match(/[A-Z]/)){
+      alert("password should have atleast one capital letter")
+    }
+    else if(!password.match(/[!@#%&]/)){
+      alert("password should have atleast one special character")
+    }
+    e.preventDefault();
+
+    // if (password !== password2) {
+    //   alert('Passwords do not match. Please try again.');
+    //   return;
+    // }
+
+    // send the POST request to the server
+    fetch('http://192.168.0.50:8000/api/signup/', {
+      method: 'POST',
+      credentials: 'omit'
+,      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/json' ,
+      "Accept": "application/json",
+      "origin":"*"}
+    })
+    .then(response => {
+      if (response.ok) {
+        // send verification email
+        // sendVerificationEmail(email);
+        // handle successful signup
+      } else {
+        // console.error(response.error);
+        // alert('An error occurred. Please try again.');
+        response.json().then(data => {
+          setError(data.errors)
+          console.log(getUsernameError())
+      })
+      // alert(response.errors);
+      }
+    })
+    .catch(error => {
+        console.error(error);
+        alert('An error occurred. Please try again.');
+    });
+  };
+
+
+
+  return (
+    <div className="login" style={{maxHeight: 100+"vh"}}>
+      <div>
+        <img
+          id="phone-img"
+          src="https://images.assetsdelivery.com/compings_v2/liravega258/liravega2581810/liravega258181000007.jpg"
+          alt="login "
+        />
+      </div>
+      <ThemeProvider theme={theme} className="themeprovider-login">
+        <Container component="main" maxWidth="xs" className="login-form">
+          <CssBaseline />
+          <Box
+            className="login-box"
+            sx={{
+              marginTop: 3,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography component="h2" variant="h" className="welcome-message">
+              Welcome To Ushirika 
+            </Typography>
+            <Typography component="h" style={{fontSize: "small"}}>
+              Enter your details below to Signup
+            </Typography>
+            
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              // sx={{ mt: 1 }}
+            >
+              
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                autoFocus
+                // error = {error.email}
+                // helperText = {()=>{console.log('====================================');
+                // console.log(error);
+                // console.log('====================================');}}
+              />
+               <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}  
+              />
+
+              <Button
+                type="submit"
+                // fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Signup
+              </Button>
+              <Grid container className="signup-text" >
+                <Grid item>
+                  Have an account?
+                  <Link href="/login" variant="body2" style={{textDecoration: "none", color: "orangered"}}>
+                    {" Login"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+          <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Container>
+      </ThemeProvider>
+      <div>
+        <img
+          id="laptops"
+          src="https://media.istockphoto.com/id/1440246683/photo/blog-word-on-wooden-cube-blocks-on-gray-background.jpg?b=1&s=170667a&w=0&k=20&c=eRpm1n7qvukgx7bK4ZWH8_LO8BPAoFFsxCGbDFatkoE="
+          alt="form"
+        />
+      </div>
+    </div>
+  );
+}
+
 
 
 

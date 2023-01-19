@@ -1,0 +1,93 @@
+
+#laptops {
+    display: none;
+  }
+  #phone-img {
+    display: block;
+    margin-top: 3vh;
+    height: 30vh;
+    margin-left: 19vw;
+    
+  }
+  
+  #email{
+    width: auto;
+  }
+  
+  .login-form {
+    margin-bottom: -7vh;
+    width: 100vh;
+  }
+  
+  
+  .login-form Button {
+    width: 60vw;
+    height: 6vh;
+    color: whitesmoke;
+    background-color: black;
+  }
+  
+  .login-box {
+    margin-bottom: 5vh;
+  }
+  
+  @media only screen and (min-width: 430px) {
+  
+    .login {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+    }
+  
+    .textfield-box {
+      width: 25vw;
+    }
+  
+    .signup-text {
+      font-size: small;
+      margin-top: 2vh;
+      display: flex;
+      justify-content: center;
+  
+    }
+  
+    .login-box {
+      margin-bottom: -5vh;
+    }
+  
+    .login-form {
+      margin-bottom: 1vh;
+      border-radius: 10px;
+      border: 1px solid rgb(180, 175, 175);
+    }
+  
+    .login-form Button {
+      width: 20vw;
+      height: 50px;
+      
+    }
+  
+    #laptops {
+      display: block;
+      height: 100vh;
+      margin-left: 5vw;
+      width: 100vh;
+      
+      
+    }
+  
+    .horizontal {
+      width: 20vw;
+      display: flex;
+      justify-content: center;
+      /* margin-left: 40px; */
+    }
+  
+    .welcome-message {
+      font-size: 23px;
+    }
+  
+    #phone-img {
+      display: none;
+    }
+  }

@@ -37,69 +37,69 @@
 //     </>
 //   )
 // }
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, TextField } from '@material-ui/core';
+// import React, { useState } from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
+// import { Avatar, Button, TextField } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-    margin: theme.spacing(3)
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  textField: {
-    margin: theme.spacing(2)
-  }
-}));
+// const useStyles = makeStyles((theme) => ({
+//   avatar: {
+//     width: theme.spacing(15),
+//     height: theme.spacing(15),
+//     margin: theme.spacing(3)
+//   },
+//   container: {
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center'
+//   },
+//   textField: {
+//     margin: theme.spacing(2)
+//   }
+// }));
 
-function UserAvatar() {
-  const classes = useStyles();
-  const [user, setUser] = useState({
-    avatar: 'https://example.com/default-avatar.png',
-    name: 'John Doe'
-  });
+// function UserAvatar() {
+//   const classes = useStyles();
+//   const [user, setUser] = useState({
+//     avatar: 'https://example.com/default-avatar.png',
+//     name: 'John Doe'
+//   });
 
-  const handleLogout = () => {
-    // Logout logic here
-    localStorage.removeItem('jwt')
-    // localStorage.removeItem('oauth2')
-    window.location.reload() 
-  };
+//   const handleLogout = () => {
+    // // Logout logic here
+    // localStorage.removeItem('jwt')
+    // // localStorage.removeItem('oauth2')
+    // window.location.reload() 
+//   };
 
-  const handleEditAvatar = event => {
-    setUser({ ...user, avatar: event.target.value });
-  };
+//   const handleEditAvatar = event => {
+//     setUser({ ...user, avatar: event.target.value });
+//   };
 
-  const handleEditName = event => {
-    setUser({ ...user, name: event.target.value });
-  };
+//   const handleEditName = event => {
+//     setUser({ ...user, name: event.target.value });
+//   };
 
-  return (
-    <div className={classes.container}>
-      <Avatar src={user.avatar} className={classes.avatar} />
-      <TextField
-        className={classes.textField}
-        label="Name"
-        value={user.name}
-        onChange={handleEditName}
-      />
-      <TextField
-        className={classes.textField}
-        label="Avatar URL"
-        value={user.avatar}
-        onChange={handleEditAvatar}
-      />
-      <Button onClick={handleLogout}>Logout</Button>
-    </div>
-  );
-}
+//   return (
+//     <div className={classes.container}>
+//       <Avatar src={user.avatar} className={classes.avatar} />
+//       <TextField
+//         className={classes.textField}
+//         label="Name"
+//         value={user.name}
+//         onChange={handleEditName}
+//       />
+//       <TextField
+//         className={classes.textField}
+//         label="Avatar URL"
+//         value={user.avatar}
+//         onChange={handleEditAvatar}
+//       />
+//       <Button onClick={handleLogout}>Logout</Button>
+//     </div>
+//   );
+// }
 
-export default UserAvatar;
+// export default UserAvatar;
 
 // import React from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -160,4 +160,53 @@ export default UserAvatar;
 //     </div>
 //   );
 // }
+import { useState, useEffect } from 'react';
+import { Card, CardContent, Typography, Button } from '@material-ui/core';
+
+const UserProfile = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        // Fetch the user details from the external API
+        fetch('http://192.168.0.50:8000/api/getuserdetails/', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc0MTIxMjYzLCJpYXQiOjE2NzQxMjAzNjMsImp0aSI6ImJmZjQ0YTlkNzAzYTQ1MmNhOTA2YzllNWM5YjU4YjJlIiwidXNlcl9pZCI6NiwidXNlcm5hbWUiOiJKYWphIn0.GEoFq59r7Br0OCdU1Q45gK2nQkUGaui6UIE-X4XPt-k' 
+           }
+        })
+        .then(response => response.json())
+        .then(data => {
+            setUser(data);
+        })
+    }, []);
+
+    const handleLogout = () => {
+        // Code to handle logout
+    localStorage.removeItem('jwt')
+    // localStorage.removeItem('oauth2')
+    window.location.reload() 
+    }
+
+    return (
+        <Card>
+            <CardContent>
+                {user ? (
+                    <>
+                        <Typography variant="h5">User Profile</Typography>
+                        <Typography>Name: {user.data.username}</Typography>
+                        <Typography>Email: {user.data.email}</Typography>
+                        <Button variant="contained" color="secondary" onClick={handleLogout}>
+                            Logout
+                        </Button>
+                    </>
+                ) : (
+                    <Typography>Loading...</Typography>
+                )}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default UserProfile;
+
 
