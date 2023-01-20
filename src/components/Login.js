@@ -213,8 +213,8 @@ const [username, setUsername] = useState('');
         })
       } else {
 
-        // console.error(response.statusText);
-        // alert('Invalid email or password. Please try again.');
+        console.error(response.statusText);
+        alert('Invalid email or password. Please try again.');
         response.json().then(data=>{
           console.log(data)
         })
@@ -232,7 +232,7 @@ const [username, setUsername] = useState('');
       <div>
         <img
           id="phone-img"
-          src="https://images.assetsdelivery.com/compings_v2/liravega258/liravega2581810/liravega258181000007.jpg"
+          src="https://media.istockphoto.com/id/1338011657/photo/the-word-blog-arranged-from-wooden-blocks-placed-on-a-white-computer-keyboard.jpg?b=1&s=170667a&w=0&k=20&c=MC6h9IhzFiWTFDOgeD1hsQQM5OJId6SWwVO8K7Fup-8="
           alt="login "
         />
       </div>
@@ -258,7 +258,7 @@ const [username, setUsername] = useState('');
             <Box
               component="form"
               onSubmit={handleSubmit}
-              noValidate
+              Validate
               // sx={{ mt: 1 }}
             >
               
