@@ -5,22 +5,28 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import "../style/blog.css";
+import Button from '@mui/material/Button';
 
 function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper
+    <div>
+    <Paper 
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
         color: '#fff',
-        mb: 4,
+        mb: 8,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${post.image})`,
-      }}
+        // width: '600vh'
+        width: '100%'
+        
+      }} className="full-width"
     >
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
@@ -35,7 +41,7 @@ function MainFeaturedPost(props) {
         }}
       />
       <Grid container>
-        <Grid item md={6}>
+        <Grid xs={12} sm={6}>
           <Box
             sx={{
               position: 'relative',
@@ -50,12 +56,15 @@ function MainFeaturedPost(props) {
               {post.description}
             </Typography>
             <Link variant="subtitle1" href="#">
+              <Button variant="contained" size="small">
               {post.linkText}
+              </Button>
             </Link>
           </Box>
         </Grid>
       </Grid>
     </Paper>
+    </div>
   );
 }
 

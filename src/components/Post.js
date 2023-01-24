@@ -46,11 +46,13 @@
 
 // export default Post;
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 // import { useEffect } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -75,17 +77,21 @@ function Post() {
     const [image_link, setImage_link] = useState('');
     const [body, setBody] = useState('');
     const [submitted, setSubmitted] = useState(false);
-
+    
+  const editorRef = useRef(null);
+ 
     // useEffect(() => {
     //     if(submitted) window.location.href = '/home';
     // }, [submitted])
-
+   
     function handleSubmit(event) {
         const formData = {
             title: title,
             image_link: image_link,
             body: body
         };
+        
+        
         console.log(formData)
         event.preventDefault();
         setSubmitted(true);
@@ -98,6 +104,7 @@ function Post() {
             body: JSON.stringify(formData)
     
     });}
+    
 
     return(
     <div className={classes.form}>
@@ -117,16 +124,32 @@ function Post() {
                 onChange={(e) => setImage_link(e.target.value)}
                 fullWidth
             />
-       <TextField
-                id="body"
-                label="Body"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                fullWidth
-                multiline
-                required
-                minRows={4}
-            />
+       
+            <>
+      <Editor
+        apiKey='h1ubqmm0ltaw6b3g8hx88zabu58wrd50talxaac2pv9fat1l'
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue="<p>This is the initial content of the editor.</p>"
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+            'bold italic forecolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        }}
+        value={body}
+        onChange={() => setBody(editorRef.current.getContent())}
+      />
+      
+    </>
+
         <Button 
                 variant="contained" 
                 color="primary" 
@@ -145,3 +168,38 @@ function Post() {
 export default Post;
 
 
+// import React, { useRef } from 'react';
+// import { Editor } from '@tinymce/tinymce-react';
+
+// export default function Post() {
+  // const editorRef = useRef(null);
+  // const log = () => {
+  //   if (editorRef.current) {
+  //     console.log(editorRef.current.getContent());
+  //   }
+  // };
+//   return (
+    // <>
+    //   <Editor
+    //     apiKey='h1ubqmm0ltaw6b3g8hx88zabu58wrd50talxaac2pv9fat1l'
+        // onInit={(evt, editor) => editorRef.current = editor}
+        // initialValue="<p>This is the initial content of the editor.</p>"
+    //     init={{
+    //       height: 500,
+    //       menubar: false,
+    //       plugins: [
+    //         'advlist autolink lists link image charmap print preview anchor',
+    //         'searchreplace visualblocks code fullscreen',
+    //         'insertdatetime media table paste code help wordcount'
+    //       ],
+    //       toolbar: 'undo redo | formatselect | ' +
+    //       'bold italic backcolor | alignleft aligncenter ' +
+    //       'alignright alignjustify | bullist numlist outdent indent | ' +
+    //       'removeformat | help',
+    //       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    //     }}
+    //   />
+    //   <button onClick={log}>Log editor content</button>
+    // </>
+//   );
+// }

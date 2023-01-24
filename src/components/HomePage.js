@@ -14,6 +14,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Avatar from '@mui/material/Avatar';
 import Blog from './Blog';
+import "../style/blog.css";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -28,7 +29,7 @@ const Search = styled('div')(({ theme }) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
+      width: '60vh',
     },
   }));
   
@@ -164,7 +165,7 @@ return(
             {/* <MenuIcon /> */}
             <Avatar src="https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"  variant="square" />
           </IconButton>
-          <Search>
+          <Search id ="search">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -216,7 +217,7 @@ return(
       {renderMenu}
     </Box>
     </div>
-    <div>
+    <div id = "blog">
     <Blog/>
     </div>
     </div>
