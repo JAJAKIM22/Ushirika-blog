@@ -14,7 +14,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Avatar from '@mui/material/Avatar';
 import Blog from './Blog';
+import { Link } from "react-router-dom";
+import CreateIcon from '@mui/icons-material/Create';
 import "../style/blog.css";
+
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -176,6 +180,13 @@ return(
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+             <Link className="nav-link" color="white" to="/post"><CreateIcon color="white"/></Link>
+            </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"

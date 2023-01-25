@@ -7,6 +7,7 @@ import UserProfile from './components/UserAvatar';
 import ForgotPassword from './components/ForgotPassword';
 import Home from './components/HomePage';
 import Blog from './components/Blog';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     <Router>
         <div>
             <Routes> 
+             <Route exact path="/" element={ <LandingPage/> } />
                 <Route path="/login" element={ <LoginForm/> } />
                 <Route path="/signup" element={ <SignupForm/> } />
                 <Route path="/post" element={ <Post/> } /> 
