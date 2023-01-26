@@ -314,7 +314,7 @@ const [username, setUsername] = useState('');
                 </Grid>
                 <Grid item style={{marginLeft: 1+'vw', textDecoration: "none"}}>
                 or Go back to
-                  <Link href="/" variant="body2" style={{textDecoration: "none", color: "orangered"}}>
+                  <Link href="/home" variant="body2" style={{textDecoration: "none", color: "orangered"}}>
                     {" Home"}
                   </Link>
                 </Grid>

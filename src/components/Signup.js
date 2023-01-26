@@ -700,6 +700,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginForm() {
+  const[firstname, setFirstName] = useState('');
+  const [secondname, setSecondName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   // const [phone, setPhone] = useState('');
@@ -810,6 +812,30 @@ export default function LoginForm() {
               noValidate
               // sx={{ mt: 1 }}
             >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="firstname"
+                label="First Name"
+                name="firstname"
+                autoComplete="firstname"
+                value={firstname}
+                onChange={e => setFirstName(e.target.value)}
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="secondname"
+                label="Second Name"
+                name="secondname"
+                autoComplete="secondname"
+                value={secondname}
+                onChange={e => setSecondName(e.target.value)}
+                autoFocus
+              />
               
               <TextField
                 margin="normal"

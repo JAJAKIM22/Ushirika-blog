@@ -7,9 +7,15 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
+import BlogCard from './BlogCardDemo';
+import "../style/blog.css";
+import SolidGameCardDemo from './SolidGameCardDemo';
+
 
 export default function LandingPage() {
   return (
+    <div>
+      <div>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -30,5 +36,13 @@ export default function LandingPage() {
         </Toolbar>
       </AppBar>
     </Box>
+    </div>
+    <div id = "card">
+     <BlogCard/> 
+    </div>
+    <div id = "book">
+    <SolidGameCardDemo/>
+     </div>
+    </div>
   );
 }
