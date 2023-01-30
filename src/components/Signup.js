@@ -701,7 +701,7 @@ const theme = createTheme();
 
 export default function LoginForm() {
   const[firstname, setFirstName] = useState('');
-  const [secondname, setSecondName] = useState('');
+  const [lastname, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   // const [phone, setPhone] = useState('');
@@ -828,12 +828,12 @@ export default function LoginForm() {
                 margin="normal"
                 required
                 fullWidth
-                id="secondname"
-                label="Second Name"
-                name="secondname"
-                autoComplete="secondname"
-                value={secondname}
-                onChange={e => setSecondName(e.target.value)}
+                id="lastname"
+                label="Last Name"
+                name="lastname"
+                autoComplete="lastname"
+                value={lastname}
+                onChange={e => setLastName(e.target.value)}
                 autoFocus
               />
               

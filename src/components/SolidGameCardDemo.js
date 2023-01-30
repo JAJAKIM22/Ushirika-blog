@@ -1,20 +1,15 @@
 import React from 'react';
 import Color from 'color';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
-const useGridStyles = makeStyles(({ breakpoints }) => ({
-  root: {
-    [breakpoints.up('md')]: {
-      justifyContent: 'center',
-    },
-  },
-}));
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import {books} from './data'
 
 const useStyles = makeStyles(() => ({
   actionArea: {
@@ -58,81 +53,76 @@ const useStyles = makeStyles(() => ({
     
   },
   media: {
-    height: '20vh',
-    // width: '30vh',
+    height: '30vh',
     paddingTop: '56.25%',
   },
 }));
 
+const SolidGameCardDemo =()=>{
+  const styles = useStyles({ color: '#203f52' });
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
-
-const CustomCard = ({ classes, image, title, subtitle }) => {
   return (
-    <CardActionArea className={classes.actionArea}>
-      <Card className={classes.card}>
-        <CardMedia className={classes.media} image={image} />
-        <CardContent className={classes.content}>
-          <Typography className={classes.content.title} variant={'h5'}>
-            {title}
-          </Typography>
-          <Typography className={classes.content.subtitle}>{subtitle}</Typography>
-        </CardContent>
+    
+    <Slider {...settings}>
+  {books.map((item) => (
+    <div>
+      <Card classes={styles}>
+        <CardActionArea classes={styles.actionArea}>
+          <CardMedia
+            component="img"
+            image={item.image}
+            alt={item.image}
+            classes={styles.media}
+          />
+          <CardContent classes={styles.content}>
+            <Typography gutterBottom variant="h5" component="div" classes={styles.title}>
+              {item.title}
+            </Typography>
+            <Typography classes={styles.subtitle}>
+              {item.subtitle}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
       </Card>
-    </CardActionArea>
+    </div>
+  ))}
+</Slider>
+    
   );
-  
-};
-
-export const SolidGameCardDemo = React.memo(function SolidGameCard() {
-    const gridStyles = useGridStyles();
-const styles = useStyles({ color: '#203f52' });
-const styles2 = useStyles({ color: '#4d137f' });
-const styles3 = useStyles({ color: '#ff9900' });
-const styles4 = useStyles({ color: '#34241e' });
-return (
-            <>
-            <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'}>
-            <Grid item>
-            <CustomCard
-            classes={styles}
-            title={'OUR MISSING HEARTS'}
-            subtitle={'Time for a second chance?'}
-            image={
-            'https://akns-images.eonline.com/eol_images/Entire_Site/2022826/rs_640x640-220926095902-e-comm-books_0011_81m4rgPWCFL.jpg?fit=around%7C776:776&output-quality=90&crop=776:776;center,top'
-            }
-            />
-            </Grid>
-            <Grid item>
-            <CustomCard
-            classes={styles2}
-            title= 'WHAT DOESNT KILL'
-            subtitle={'Patience? ...'}
-            image={
-            'https://www.refinery29.com/images/10229895.jpg'
-            }
-            />
-            </Grid>
-            <Grid item>
-            <CustomCard
-            classes={styles3}
-            title={'The Golem'}
-            subtitle={'What are you waiting for?'}
-            image={'https://media.wired.co.uk/photos/606d9f23ce1204c637f2f2dd/master/w_1600%2Cc_limit/wired-books-23.jpg'}
-            />
-            </Grid>
-            <Grid item>
-            <CustomCard
-            classes={styles4}
-            title={'GOOD COMPANY'}
-            subtitle={'Ready to be engaged?'}
-            image={
-            'https://www.realsimple.com/thmb/SfNg8yAeUTxA7p6OtExOxMjx8-Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Good-Company-Book-Cover-448342647b744db79b6c31c061eef126.jpg'
-            }
-            />
-            </Grid>
-            </Grid>
-            </>
-            );
-            });
+}
 
 export default SolidGameCardDemo;
