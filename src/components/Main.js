@@ -1,13 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import Markdown from './Markdown';
+import {posts} from './mapost'
+import CardMedia from '@mui/material/CardMedia';
 
-function Main(props) {
-  const { posts, title } = props;
-
+function Main() {
+  
   return (
     <Grid
       item
@@ -19,24 +18,29 @@ function Main(props) {
         },
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
-      <Divider />
+      
+      
       {posts.map((post) => (
-        <Markdown className="markdown" key={post.substring(0, 40)}>
-          {post}
-          <Divider/>
-        </Markdown>
-        
+        <>
+        <Typography variant="h3" gutterBottom>
+        {post.title}
+      </Typography>
+             <CardMedia
+          component="img"
+          height="100"
+          image={post.image}
+          alt="Nicola Sturgeon on a TED talk stage"
+        />
+       <Typography>
+              {post.body}
+      </Typography>
+      <Divider/>
+       
+      </> 
       ))}
     </Grid>
   );
 }
 
-Main.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default Main;

@@ -8,6 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import BlogCard from './BlogCardDemo';
+import Grid from '@mui/material/Grid';
+import Main from './Main';
 import "../style/blog.css";
 import SolidGameCardDemo from './SolidGameCardDemo';
 
@@ -43,6 +45,11 @@ export default function LandingPage() {
     <div id = "book">
     <SolidGameCardDemo/>
      </div>
-    </div>
+    
+     <Grid container spacing={5} sx={{ mt: 3 }}>
+             <Main /> 
+          </Grid>
+     </div>
+    
   );
 }
