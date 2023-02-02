@@ -10,14 +10,12 @@ import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import {AccountCircle} from '@mui/icons-material';
+import { AccountCircle } from '@mui/icons-material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItemIcon } from '@mui/material';
 import {ListItemText} from '@mui/material';
 import { Divider } from '@mui/material';
-import { Bookmarks } from '@mui/icons-material';
 import { AccountCircleOutlined } from '@mui/icons-material';
-import { BookmarksOutlined } from '@mui/icons-material';
 import { ArticleOutlined } from '@mui/icons-material';
 import { MenuBook } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
@@ -70,15 +68,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
     height: 48,
 }))
-
-const navLinkStyle = {
-    color:'inherit',
-    textDecoration:'none',
-    display:'flex',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-}
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
     color:'inherit',
@@ -166,11 +155,6 @@ const AppTopBar = () => {
                 </StyledMenuItem>
                 <Divider />
                 <MenuItem>
-        <CreateIcon color="black"/>
-          <Link className="nav-link" color="" to="/post"><CreateIcon color="black"/></Link> 
-        <p>Write Blog</p>
-      </MenuItem>
-                <MenuItem>
                     <ListItemText primary="Sign Out" secondary = "claudiusmango@gmail.com"/>
                 </MenuItem>
             </Menu>
@@ -193,6 +177,7 @@ const AppTopBar = () => {
                         BLOGS
                     </Typography>
                 </Link>
+                <Box sx={{ flexGrow: 1 }} />
                 <Search>
                     <SearchIconWrapper>
                     <SearchIcon />
@@ -202,7 +187,6 @@ const AppTopBar = () => {
                     inputProps={{ 'aria-label': 'search' }}
                     />
                 </Search>
-                <Box sx={{ flexGrow: 1 }} />
                 
                 <Box sx={{ display: 'flex' }}>
                 <IconButton

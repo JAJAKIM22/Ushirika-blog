@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import "../style/post.css";
+import AppTopBar from './Navbar'
 
 
 const useStyles = makeStyles(theme => ({
@@ -71,6 +72,7 @@ function Post() {
 
     return(
       <>
+      <AppTopBar/>
       <Grid id = "lappy" container spacing={1} sx={{ mt: 3 }}>
     <div className={classes.form}>
        <form onSubmit={handleSubmit}> 
