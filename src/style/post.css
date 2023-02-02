@@ -1,0 +1,10 @@
+#phone{
+display: none;
+}
+
+@media only screen and (min-width: 430px) {
+    #lappy{
+        width: 0px;
+        
+    }
+}

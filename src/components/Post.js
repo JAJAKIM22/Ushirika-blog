@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import "../style/post.css";
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginTop: theme.spacing(10),
     margin: theme.spacing(60),
+    width: theme.spacing(30)
   },
   message: {
     marginTop: theme.spacing(2),
@@ -69,7 +71,7 @@ function Post() {
 
     return(
       <>
-      <Grid container spacing={1} sx={{ mt: 3 }}>
+      <Grid id = "lappy" container spacing={1} sx={{ mt: 3 }}>
     <div className={classes.form}>
        <form onSubmit={handleSubmit}> 
        <TextField
@@ -102,7 +104,42 @@ function Post() {
        
     </div>
     </Grid>
-    </>
+    
+    
+    {/* <Grid id = "phone"  sx={{ mt: 3 }}>
+  <div className={classes.form}>
+     <form onSubmit={handleSubmit}> 
+     <TextField
+              id="title"
+              label="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              fullWidth
+          />
+       <input 
+       style={{height: '5vh', color: 'blue', margin: '15px', fontSize: '40', }}
+        type="file"
+        accept="image/*"
+        label="IMAGE"
+        onChange={handleImageChange}
+      />
+     <ReactQuill  style={{height: '40vh'}} theme="snow" value={body} onChange={setBody} />
+     
+      <Button 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              type="submit" 
+              disabled={submitted}
+          >
+              POST BLOG
+      </Button>
+     </form>
+     
+  </div>
+  </Grid> */}
+  </>
     )
 }
 

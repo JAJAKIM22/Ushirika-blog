@@ -12,10 +12,39 @@ import Grid from '@mui/material/Grid';
 import Main from './Main';
 import "../style/blog.css";
 import SolidGameCardDemo from './SolidGameCardDemo';
+import Sidebar from './Sidebar';
+
 
 
 export default function LandingPage() {
   return (
+    // <div>
+    //   <div>
+    
+    // </div>
+    // <div id = "card">
+    //  <BlogCard/> 
+    // </div>
+    // <div id = "book">
+    // <SolidGameCardDemo/>
+    //  </div>
+    
+    //  {/* <Grid container spacing={5} sx={{ mt: 3 }}>
+    //          <Main /> 
+    //          <Sidebar />
+    //       </Grid> */}
+        //   <main>
+          
+        //   <Grid container spacing={3} sx={{ mt: 2 }}>
+        //     <div style={{width: "120vh", marginLeft: '60px'}}>
+        //      <Main /> 
+        //      </div>
+        //      <Sidebar/>
+            
+            
+        //   </Grid>
+        // </main>
+    //  </div>
     <div>
       <div>
     <Box sx={{ flexGrow: 1 }}>
@@ -45,10 +74,17 @@ export default function LandingPage() {
     <div id = "book">
     <SolidGameCardDemo/>
      </div>
-    
-     <Grid container spacing={5} sx={{ mt: 3 }}>
+     <main>
+          
+          <Grid container spacing={3} sx={{ mt: 2 }}>
+            <div style={{width: "120vh", marginLeft: '50px'}}>
              <Main /> 
+             </div>
+             <Sidebar/>
+            
+            
           </Grid>
+        </main>
      </div>
     
   );
