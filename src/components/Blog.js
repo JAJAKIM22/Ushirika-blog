@@ -6,10 +6,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 // import FeaturedPost from './FeaturedPost';
-import Main from './Main';
 import Sidebar from './Sidebar';
 // import Footer from './Footer';
-
+import FeedsBlogPostListItem from './FeedsBlog'
 
 
 
@@ -71,8 +70,10 @@ export default function Blog() {
           </Grid> */}
           <Grid container spacing={5} sx={{ mt: 3 }}>
           
-             <Main /> 
-             <Sidebar/>
+             <div>
+             <FeedsBlogPostListItem/>
+             </div>
+             <Sidebar />
             
           </Grid>
         </main>

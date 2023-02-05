@@ -80,7 +80,7 @@ image={
 <Typography variant="h5">What is Ushirika ?</Typography>
 <Typography variant="body2">Ushirika is a blog web application. Every person can express themselves and...
 </Typography>
-<Button className={styles.cta}><Link className="nav-link"  to="/signup">Read more</Link></Button>
+<Button className={styles.cta}><Link className="nav-link"  to="/login">Read more</Link></Button>
 </CardContent>
 </Card>
 );

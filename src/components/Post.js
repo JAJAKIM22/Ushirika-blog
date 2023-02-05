@@ -9,7 +9,8 @@ import Grid from '@mui/material/Grid';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import "../style/post.css";
-import AppTopBar from './Navbar'
+import Header from './Header';
+import { Box } from '@mui/system';
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,13 +18,15 @@ const useStyles = makeStyles(theme => ({
     display: 'center',
     flexDirection: 'column',
     '& > *': {
-      margin: theme.spacing(20),
+      marginTop: theme.spacing(10),
+      marginLeft:  theme.spacing(20),
+      marginRight:  theme.spacing(20)
     },
   },
   button: {
     marginTop: theme.spacing(10),
-    margin: theme.spacing(60),
-    width: theme.spacing(30)
+    margin: theme.spacing(18),
+    width: theme.spacing(20)
   },
   message: {
     marginTop: theme.spacing(2),
@@ -34,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 function Post() {
     const classes = useStyles();
     const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [body, setBody] = useState('');
     const [submitted, setSubmitted] = useState(false);
@@ -72,8 +76,11 @@ function Post() {
 
     return(
       <>
-      <AppTopBar/>
-      <Grid id = "lappy" container spacing={1} sx={{ mt: 3 }}>
+      <div></div>
+     <Header/>
+      <Box sx={{
+       width: {xs:'80vh', sm: '70vh', md: '150vh'}, marginLeft: {xs:-18, sm: -18, md : 2}
+      }} >
     <div className={classes.form}>
        <form onSubmit={handleSubmit}> 
        <TextField
@@ -81,6 +88,14 @@ function Post() {
                 label="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
+                fullWidth
+            />
+            <TextField
+                id="description"
+                label="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 required
                 fullWidth
             />
@@ -105,7 +120,7 @@ function Post() {
        </form>
        
     </div>
-    </Grid>
+    </Box>
     
     
     {/* <Grid id = "phone"  sx={{ mt: 3 }}>

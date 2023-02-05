@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Button, Typography, Container, CssBaseline, TextField,  Link, Grid, Box} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../style/signup.css";
-
+import {useNavigate} from "react-router-dom"
 
 
 function Copyright(props) {
@@ -36,19 +36,14 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   // const [password2, setPassword2] = useState('');
   // const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
 
-  let getUsernameError = ()=>{
-    if (error.username){
-      return error.username[0]
-    }else{
-      return null
-    }
-  }
-
+  const navigate = useNavigate();
+    
+  
 
 const handleSubmit = (e) => {
-
+  e.preventDefault();
+  
       const formData = {
         firstname: firstname,
         lastname: lastname,
@@ -75,33 +70,28 @@ const handleSubmit = (e) => {
       // }
   
       // send the POST request to the server
-      fetch('http://192.168.0.50:8000/api/signup/', {
+      fetch('http://192.168.0.51:8000/api/signup/', {
         method: 'POST',
         credentials: 'omit'
   ,      body: JSON.stringify(formData),
         headers: { 'Content-Type': 'application/json' ,
         "Accept": "application/json",
-        "origin":"*"}
+        "Access-Control-Allow-Origin":"*"}
       })
       .then(response => {
         if (response.ok) {
           // send verification email
           // sendVerificationEmail(email);
           // handle successful signup
+          // window.location.href = '/login';
+          // navigate("/login");
         } else {
           // console.error(response.error);
           // alert('An error occurred. Please try again.');
-          response.json().then(data => {
-            setError(data.errors)
-            console.log(getUsernameError())
-        })
-         alert(response.errors);
+         
       }
     })
-    .catch(error => {
-        console.error(error);
-        alert('An error occurred. Please try again.');
-    });
+    
   };
 
   const sendVerificationEmail = (email) => {

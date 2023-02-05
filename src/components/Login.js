@@ -196,8 +196,9 @@ const [username, setUsername] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     // send the POST request to the server
-    fetch('http://192.168.0.50:8000/api/token/', {
+    fetch('http://192.168.0.51:8000/api/token/', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -205,6 +206,7 @@ const [username, setUsername] = useState('');
     
     .then(response => {
       if (response.ok) {
+        window.location.href = '/home';
         response.json().then(data=>{
           localStorage.setItem(
             "tokens",
@@ -212,7 +214,7 @@ const [username, setUsername] = useState('');
           )
         })
       } else {
-
+       
         console.error(response.statusText);
         alert('Invalid email or password. Please try again.');
         response.json().then(data=>{

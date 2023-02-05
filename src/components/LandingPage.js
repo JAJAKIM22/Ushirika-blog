@@ -9,11 +9,10 @@ import Avatar from '@mui/material/Avatar';
 import { Link } from "react-router-dom";
 import BlogCard from './BlogCardDemo';
 import Grid from '@mui/material/Grid';
-import Main from './Main';
 import "../style/blog.css";
 import SolidGameCardDemo from './SolidGameCardDemo';
 import Sidebar from './Sidebar';
-
+import FeedsBlogPostListItem from './FeedsBlog'
 
 
 export default function LandingPage() {
@@ -78,7 +77,7 @@ export default function LandingPage() {
           
           <Grid container spacing={3} sx={{ mt: 2 }}>
             <div style={{width: "120vh", marginLeft: '50px'}}>
-             <Main /> 
+             <FeedsBlogPostListItem /> 
              </div>
              <Sidebar/>
             
