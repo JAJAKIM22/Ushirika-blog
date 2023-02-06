@@ -21,37 +21,7 @@ const mainFeaturedPost = {
   linkText: 'Continue reading…',
 };
 
-// const featuredPosts = [
-//   {
-//     title: 'Featured post',
-//     date: 'Nov 12',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//     image: 'https://source.unsplash.com/random',
-//     imageLabel: 'Image Text',
-//   },
-//   {
-//     title: 'Post title',
-//     date: 'Nov 11',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//     image: 'https://source.unsplash.com/random',
-//     imageLabel: 'Image Text',
-//   },
-// ];
 
-
-
-// const sidebar = {
-//   title: 'Blog Topics',
-  
- 
-//   social: [
-//     { name: 'GitHub', icon: GitHubIcon },
-//     { name: 'Twitter', icon: TwitterIcon },
-//     { name: 'Facebook', icon: FacebookIcon },
-//   ],
-// };
 
 const theme = createTheme();
 
@@ -60,14 +30,9 @@ export default function Blog() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        {/* <Header title="Blog" sections={sections} /> */}
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
-          {/* <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid> */}
+          
           <Grid container spacing={5} sx={{ mt: 3 }}>
           
              <div>
@@ -78,10 +43,6 @@ export default function Blog() {
           </Grid>
         </main>
       </Container>
-      {/* <Footer
-        title="Footer"
-        description="Something here to give the footer a purpose!"
-      /> */}
     </ThemeProvider>
   );
 }
